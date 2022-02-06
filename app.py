@@ -21,7 +21,9 @@ def predict_wine(tipo, fixed, volatile, citric, residual, chlorides, freesulfur,
     pickle_file = open('model_wine.pkl', 'rb')     
     model = pickle.load(pickle_file)
     y_predict = model.predict([[tipo, fixed, volatile, citric, residual, chlorides, freesulfur, totalsulfur, density, ph, sulphates, alcohol]])[0]
-    return mapper[y_predict]
+    y_proba = model.predict_proba([[tipo, fixed, volatile, citric, residual, chlorides, freesulfur, totalsulfur, density, ph, sulphates, alcohol]])
+    
+    return [mapper[y_predict], y_proba]
 
 @app.route("/")
 def hello():
