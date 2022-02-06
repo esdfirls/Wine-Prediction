@@ -1,10 +1,11 @@
+from tracemalloc import start
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from app import predict_wine
 from PIL import Image
 import plotly.express as px
-
+import time
 
 class StreamlitApp:
 
@@ -30,10 +31,16 @@ class StreamlitApp:
         mapper = {'White Wine':0,'Red Wine':1}
 
 
+        # Predict Button
         if st.button('Wine Predict'):
-
+            starttime = time.time()
             self.wine = predict_wine(mapper[self.tipo], self.prop[0], self.prop[1],self.prop[2],self.prop[3],self.prop[4],self.prop[5],self.prop[6],self.prop[7],self.prop[8],self.prop[9],self.prop[10])
-            st.header(f"Wine Quality: {self.wine[0]}")
+            st.markdown('Time execution: {:.2f} seconds'.format((time.time() - starttime)))
+            # self.progress = st.pr
+            if self.wine[0] == 'Good Wine':
+                st.success(f"Wine Quality: {self.wine[0]}")
+            else:
+                st.error(f"Wine Quality: {self.wine[0]}")
             st.markdown(f"Wine Type: {self.tipo}")
 
             st.markdown('Probability of Class')
