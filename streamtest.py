@@ -25,8 +25,8 @@ class StreamlitApp:
         if st.button('Wine Predict'):
 
             self.wine = predict_wine(mapper[self.tipo], self.prop[0], self.prop[1],self.prop[2],self.prop[3],self.prop[4],self.prop[5],self.prop[6],self.prop[7],self.prop[8],self.prop[9],self.prop[10])
-            st.write(f"Wine Quality: {self.wine[0]}")
-            st.title('Probability of Class')
+            st.header(f"Wine Quality: {self.wine[0]}")
+            st.markdown('Probability of Class')
             st.bar_chart(self.wine[1])
         else:
             st.write('')
