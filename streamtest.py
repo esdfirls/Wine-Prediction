@@ -1,4 +1,3 @@
-from tracemalloc import start
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -11,16 +10,26 @@ class StreamlitApp:
 
 
     def __init__(self):
+        self.df = pd.read_csv(r'winequalityN.csv')
+        self.df.dropna(inplace=True)
         self.title = st.title('Wine Prediction Project')
         with st.expander("See explanation"):
             st.write("""
          The objective of this project is to predict the quality of a wine from its physicochemical properties. 
          Data were extracted from kaggle for study purposes. 
          There are several possibilities of application in development and quality control in the wine making process from this solution.
+         
+         Based on the properties of the wine, a prediction is made whether the wine is good or bad. 
+         The database has the properties and an evaluation score, which goes from 0 to 10. 
+         These groups were separated where 0 to 5 is bad and 6 to 10 is good.
+
+         Original Dataset Example:
      """)
+            st.dataframe(self.df)   
+            st.write(f'Model Accuracy: 83%  \n  Model F1-Score: 83%')
+
         self.sidetitle = st.sidebar.text('Properties')
         self.tipo = st.sidebar.radio('Type',('White Wine','Red Wine'))
-        self.df = pd.read_csv(r'winequalityN.csv')
 
         self.cols = list(self.df.columns)
         self.properties = {}
