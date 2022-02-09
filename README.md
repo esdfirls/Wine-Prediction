@@ -2,8 +2,16 @@
 
 Web App: https://share.streamlit.io/esdfirls/wine-prediction/main/streamtest.py
 
+The objective of this project is to predict the quality of a wine from its physicochemical properties and deploy the solution in a API, Desktop App and Web App. 
+Data were extracted from kaggle for study purposes. 
+There are several possibilities of application in development and quality control in the wine making process from this solution.
+
+Based on the properties of the wine, a prediction is made whether the wine is good or bad. 
+The database has the properties and an evaluation score, which goes from 0 to 10. 
+These groups were separated where 0 to 5 is bad and 6 to 10 is good.
 
 ## Problem
+
 Problem: Identify the quality of a wine from its properties
 
 Gaps: A taster's analysis can be subjective and may not be sufficient to determine the quality of the wine.
