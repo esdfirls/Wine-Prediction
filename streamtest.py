@@ -55,7 +55,7 @@ class StreamlitApp:
 
             st.markdown('Probability of Class')
             fig = px.pie(self.wine[1], values=self.wine[1][0], names=['Bad Wine','Good Wine'], color_discrete_sequence=px.colors.sequential.Burgyl)
-            st.plotly_chart(fig, width=400)
+            st.plotly_chart(fig)
         else:
             st.write('')
 
