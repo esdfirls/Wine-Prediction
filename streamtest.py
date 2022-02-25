@@ -1,3 +1,4 @@
+from turtle import width
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -10,8 +11,8 @@ class StreamlitApp:
 
 
     def __init__(self):
-        self.df = pd.read_csv(r'winequalityN.csv')
-        self.df.dropna(inplace=True)
+        st.set_page_config(page_title='Wine Prediction', layout='wide', initial_sidebar_state='expanded')
+        self.df = self.import_df()
         self.title = st.title('Wine Prediction Project')
         with st.expander("See explanation"):
             st.write("""
@@ -54,12 +55,18 @@ class StreamlitApp:
 
             st.markdown('Probability of Class')
             fig = px.pie(self.wine[1], values=self.wine[1][0], names=['Bad Wine','Good Wine'], color_discrete_sequence=px.colors.sequential.Burgyl)
-            st.plotly_chart(fig)
+            st.plotly_chart(fig, width=400)
         else:
             st.write('')
 
         self.image = Image.open('WineTypes.jpg')
         st.image(self.image, caption='Wine Types', use_column_width='auto')
+
+    @st.cache(allow_output_mutation=True)
+    def import_df(self):
+        self.df = pd.read_csv(r'winequalityN.csv')
+        self.df.dropna(inplace=True)
+        return self.df
 
 
 

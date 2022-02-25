@@ -1,10 +1,11 @@
 from flask import Flask
-
+from streamlit import cache
 import pickle
 from flask import request, jsonify
 
 app = Flask(__name__)
 
+@cache(allow_output_mutation=True)
 def predict_wine(tipo, fixed, volatile, citric, residual, chlorides, freesulfur, totalsulfur, density, ph, sulphates, alcohol):
     """
         This function imports an machine learning model and runs a prediction.
